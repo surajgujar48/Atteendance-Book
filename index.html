@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,
+initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="C:\Users\suraj\OneDrive\Desktop\Suraj.jscript.js"></script>
+
+
+</head>
+
+<body>
+
+  <style>
+    body {
+      background-color: black;
+    }
+
+
+    /* Custom CSS for form and modal */
+
+    #myForm {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      transition: all 0.3s ease;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"] {
+      width: calc(100% - 10px);
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    input[type="button"] {
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: green;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    input[type="button"]:hover {
+      background-color: #0056b3;
+      transform: translateY(-3px);
+    }
+
+    /* Download link styles */
+    #downloadLink {
+      text-align: center;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+
+    #excelDownloadLink {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    #excelDownloadLink:hover {
+      background-color: #218838;
+      transform: scale(1.05);
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      background-color: green;
+      padding: 20px;
+      margin-top: 0;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Styling the button */
+    .btn {
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animation effect */
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.6s ease;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    .btn:hover::before {
+      width: 0;
+      height: 0;
+    }
+
+
+    .green-bot {
+      background-color: #C0C0C0;
+      /* Green color */
+      color: white;
+      /* Text color */
+      padding: 20px;
+      /* Padding around the content */
+      text-align: center;
+    }
+
+     
+.
+  </style>
+  <div>
+
+    <form id="myForm">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        &#x1F449;Help? Read me
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thank you so much for reading me</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h1>WelCome</h1>
+              <div class="green-bot">
+                <h>This read me file teach how it's work how to add Roll no and How to download excel sheet data,</h>
+              </div>
+
+
+              <p>In this project, a Teacher can <strong style="background-color: yellow;">input Student Roll numbers:</strong>. They ask the Student for Their Number in the format 001, 002, 003. The corresponding student names will automatically appear. Then, by <strong style="background-color: yellow;">clicking an "Add Data" button:</strong>, the teacher can continue adding more students.</p>
+
+<p>Once all the students are added, there's a button to generate an Excel sheet with the attendance data. If the Excel file already exists, <strong style="background-color: yellow;">clicking on the "Generate Excel" button:</strong> automatically downloads the existing file, and the attendance data is appended to it.</p>
+
+<p>After the Excel sheet is generated, a link or button appears, allowing the teacher to download the file. <strong style="background-color: yellow;">Clicking this "Download Excel" button</strong> initiates the download process, saving the Excel file to the user's designated download folder on their computer.</p>
+
+               <p>In order to streamline attendance management, our tool offers two convenient options for teachers:</p>
+
+<p><strong style="background-color: yellow;">Merge Attendance:</strong> To compile attendance data from 30 days into a single sheet, simply click on 'Merge Excel Sheets'. The tool will automatically merge all the Excel sheets in ascending order and display the consolidated data on the screen.</p>
+
+<p><strong style="background-color: yellow;">Download Full Data:</strong> If the teacher prefers to have the complete attendance data in an Excel format, they can click on 'Download as Excel'. This option allows them to download the entire dataset for further analysis or record-keeping.</p>
+
+<p>Additionally, for easy printing or conversion to PDF format, we provide a 'Print' button. By clicking on it, users can seamlessly print out the attendance records or convert them into a PDF document .</p>
+
+
+              <div class="green-bot">
+                <h>©2024 Created by SurajGujar48</h>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                &#10060;
+              </button>
+              <button type="button" class="btn btn-primary">&#10004;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h1>
+        <center>Attendece Book
+      </h1>
+      <form id="myForm">
+
+        <label for="date">Todays Date:</label>
+        <input type="text" id="date" name="date" readonly><br><br>
+        <label for="roll">Roll No:</label>
+        <input type="text" placeholder="Roll should Enter like 001, 002, 003...etc" id="roll" name="roll" oninput="lookupCity()"><br><br>
+
+        <label for="rin">Full Name:</label>
+        <input type="text" id="rin" name="rin" disabled><br><br>
+
+        <input type="button" value="Add Data" onclick="addData()">
+        <input type="button" value="Generate Excel" onclick="generateExcel()">
+<button onclick="window.open('©2024createby-surajgujar48.html')" class="btn btn-primary custom-btn">Merge</button>
+>
+
+  
+
+        <h> <text-align: center;>©2024createby-surajgujar48</h>
+      </form>
+
+      <!-- Download link for the Excel sheet -->
+      <div id="downloadLink" style="display: none;">
+        <a id="excelDownloadLink" download="data.xlsx" href="#">Download Excel</a>
+
+      </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+      <script>
+        var jsonData = []; // Array to store data
+
+        function addData() {
+          var roll = document.getElementById('roll').value;
+          var fullName = document.getElementById('rin').value;
+          var date = document.getElementById('date').value;
+
+          // Add data to the JSON array
+          jsonData.push({ 'Roll No': roll, 'Full Name': fullName, 'Date': date });
+
+          // Clear input field after adding data
+          document.getElementById('roll').value = '';
+        }
+
+
+        function generateExcel() {
+          if (jsonData.length === 0) {
+            alert("No data added. Please add some data first.");
+            return;
+          }
+
+          // Create a new workbook
+          var wb = XLSX.utils.book_new();
+
+          // Convert JSON array to worksheet
+          var ws = XLSX.utils.json_to_sheet(jsonData);
+
+          // Add worksheet to workbook
+          XLSX.utils.book_append_sheet(wb, ws, "Data");
+
+          // Generate Excel file
+          var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+          // Convert to Blob
+          var blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
+
+          // Show download link
+          var downloadLink = document.getElementById('downloadLink');
+          downloadLink.style.display = 'block';
+
+          // Set download link href to the blob
+          var excelDownloadLink = document.getElementById('excelDownloadLink');
+          excelDownloadLink.href = window.URL.createObjectURL(blob);
+        }
+
+        function s2ab(s) {
+          var buf = new ArrayBuffer(s.length);
+          var view = new Uint8Array(buf);
+          for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+          return buf;
+        }
+
+
+
+        function lookupCity() {
+          var roll = document.getElementById('roll').value;
+          
+          var fullNameInput = document.getElementById('rin');
+
+          if (roll in rollToName) {
+            fullNameInput.value = rollToName[roll];
+          } else {
+            fullNameInput.value = "No Full Name found";
+          }
+        }
+
+        function s2ab(s) {
+          var buf = new ArrayBuffer(s.length);
+          var view = new Uint8Array(buf);
+          for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+          return buf;
+        }
+
+        // Get the current date
+        var today = new Date();
+
+        // Format the date as YYYY-MM-DD
+        var formattedDate = today.getFullYear() + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getDate().toString().padStart(2, '0');
+
+        // Set the value of the date input field
+        document.getElementById('date').value = formattedDate;
+      </script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+      <script src="script.js"></script>
+</body>
+
+</html>

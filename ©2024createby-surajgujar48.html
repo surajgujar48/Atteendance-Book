@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merge Excel Sheets</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #d2e7d2; /* Boosted sap green background for table headers */
+    }
+    
+    .button-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    /* Custom button styles */
+    .custom-btn {
+        background-color: #28a745; /* Bootstrap green color */
+        border-color: #28a745; /* Bootstrap green color */
+        color: #fff; /* White text color */
+    }
+    
+    .custom-btn:hover {
+        background-color: #218838; /* Darker Bootstrap green color on hover */
+        border-color: #1e7e34; /* Darker Bootstrap green color on hover */
+    }
+
+    body {
+      background-color: gray;
+    }
+</style>
+</head>
+<body>
+
+
+<!-- HTML input element for selecting Excel files -->
+<input type="file" id="excelFiles" class="custom-file-input" multiple accept=".xlsx,.xls">
+<label class="custom-file-label" for="excelFiles">Choose files</label>
+
+<!-- Button to trigger merging process -->
+<button onclick="mergeExcelSheets()" class="btn btn-primary custom-btn">Merge Excel Sheets</button>
+
+<!-- Button to download merged data as Excel -->
+<button onclick="downloadExcel()" class="btn btn-success custom-btn">Download as Excel</button>
+
+<!-- Button to print merged data -->
+<div class="button-container">
+    <button onclick="printMergedData()" class="btn btn-secondary custom-btn">Print</button>
+</div>
+
+<!-- Container to display merged data -->
+<div id="mergedData"></div>
+
+<script>
+    let mergedData = []; // Store merged data globally
+
+    function mergeExcelSheets() {
+        const input = document.getElementById('excelFiles');
+        const files = input.files;
+        
+        if (files.length < 2) {
+            alert('Please select at least two Excel files for merging.');
+            return;
+        }
+
+        // Load each Excel file and merge them
+        const workbooks = [];
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const data = new Uint8Array(event.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                workbooks.push(workbook);
+
+                if (workbooks.length === files.length) {
+                    mergeWorkbooks(workbooks);
+                }
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+    }
+
+    function mergeWorkbooks(workbooks) {
+        // Merge logic - concatenate all sheets into one array
+        const allData = [];
+        for (let i = 0; i < workbooks.length; i++) {
+            const workbook = workbooks[i];
+            for (const sheetName of workbook.SheetNames) {
+                const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+                allData.push(...sheetData);
+            }
+        }
+
+        mergedData = allData; // Store merged data globally
+
+        // Display merged data
+        displayMergedData(allData);
+    }
+
+    function displayMergedData(allData) {
+        const mergedDataDiv = document.getElementById('mergedData');
+        mergedDataDiv.innerHTML = ''; // Clear previous content
+
+        // Create table to display merged data
+        const table = document.createElement('table');
+        const headerRow = table.insertRow();
+        for (let header in allData[0]) {
+            const th = document.createElement('th');
+            th.textContent = header;
+            headerRow.appendChild(th);
+        }
+
+        for (let rowData of allData) {
+            const row = table.insertRow();
+            for (let key in rowData) {
+                const cell = row.insertCell();
+                cell.textContent = rowData[key];
+            }
+        }
+
+        mergedDataDiv.appendChild(table);
+    }
+
+    function downloadExcel() {
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.json_to_sheet(mergedData);
+        XLSX.utils.book_append_sheet(wb, ws, "Merged Data");
+        XLSX.writeFile(wb, "merged_data.xlsx");
+    }
+
+    function printMergedData() {
+        window.print();
+    }
+
+    // Update file input placeholder to show the number of files chosen
+    document.getElementById('excelFiles').addEventListener('change', function() {
+        const fileInput = this;
+        const files = fileInput.files;
+        let labelText = 'Choose files';
+        if (files && files.length > 0) {
+            labelText = `${files.length} file(s) chosen`;
+        }
+        fileInput.nextElementSibling.textContent = labelText;
+    });
+</script>
+
+</body>
+</html>
